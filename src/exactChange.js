@@ -1,5 +1,10 @@
 function checkCashRegister(price, cash, cashInDrawer){
 
+    if(isNegativeNumber(price, cash, cashInDrawer)){
+        throw new TypeError("Invalid Input");
+    }
+
+
     var denominations = [
         {name: 'ONE HUNDRED', value: 100.00},
         {name: 'TWENTY',      value: 20.00},
@@ -53,8 +58,8 @@ function checkCashRegister(price, cash, cashInDrawer){
                 return 'insufficient funds';
             }
 
-            function isNotNumber(cash, price, cashInDrawer) {
-                return result == "not a number";
+            function isNegativeNumber(price, cash, cashInDrawer) {
+                return result < 0;
             }
 }
 
