@@ -1,31 +1,40 @@
+var denominations = [
+
+    {name: 'ONE HUNDRED', value: 100.00},
+    {name: 'TWENTY',      value: 20.00},
+    {name: 'TEN',         value: 10.00},
+    {name: 'FIVE',        value: 5.00},
+    {name: 'ONE',         value: 1.00},
+    {name: 'QUARTER',     value: 0.25},
+    {name: 'DIME',        value: 0.10},
+    {name: 'NICKEL',      value: 0.05},
+    {name: 'PENNY',       value: 0.01}
+    ];
+
 function checkCashRegister(price, cash, cashInDrawer){
-
-    if(isNegativeNumber(price, cash, cashInDrawer)){
-        throw new TypeError("Invalid Input");
-    }
-
-
-    var denominations = [
-        {name: 'ONE HUNDRED', value: 100.00},
-        {name: 'TWENTY',      value: 20.00},
-        {name: 'TEN',         value: 10.00},
-        {name: 'FIVE',        value: 5.00},
-        {name: 'ONE',         value: 1.00},
-        {name: 'QUARTER',     value: 0.25},
-        {name: 'DIME',        value: 0.10},
-        {name: 'NICKEL',      value: 0.05},
-        {name: 'PENNY',       value: 0.01}
-        ];
 
         var change = cash - price;
 
-        var register = cashInDrawer.reduce(function(a, b) {
+        var register = cashInDrawer.reduce(function(a, b){
             return a + b[1];
         }, 0.0);
 
+        if(noChange(change)){
+            return 'No Change';
+        }
+        if(isNegativeNumber(price, cash, cashInDrawer)){
+            return 'Invalid Input';
+        }
+        if(price < 0){
+            return 'Invalid Entry';
+        }
+        if(cash < 0){
+            return 'Invalid Entry';
+        }
         if(register < change){
             return 'Insufficient Funds';
-        }else if(register == change){
+        }
+        if(register === change){
             return 'Closed';
         }
 
@@ -52,14 +61,18 @@ function checkCashRegister(price, cash, cashInDrawer){
 
             }, []);
 
-            if(result.length > 0 && change === 0){
-                return result;
-            } else {
-                return 'insufficient funds';
+            function noChange(price, cash, cashInDrawer){
+                return change == 0 && register > 0;
             }
 
-            function isNegativeNumber(price, cash, cashInDrawer) {
+            function isNegativeNumber(price, cash, cashInDrawer){
                 return result < 0;
+            }
+
+            if(result.length > 0 && change == 0){
+                return result;
+            } else {
+                return 'Insufficient Funds';
             }
 }
 
