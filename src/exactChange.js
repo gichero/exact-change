@@ -1,5 +1,6 @@
-var denominations = [
 
+
+var denominations = [
     {name: 'ONE HUNDRED', value: 100.00},
     {name: 'TWENTY',      value: 20.00},
     {name: 'TEN',         value: 10.00},
@@ -24,32 +25,35 @@ function checkCashRegister(price, cash, cashInDrawer){
         if(drawer === change){
             return 'Closed';
         }
-        if(noChange(change)){
-            return 'No Change';
-        }
         if(price < 0){
             return 'Invalid Entry';
         }
         if(cash < 0){
             return 'Invalid Entry';
         }
+        if(noChange(drawer, change)){
+            return 'No Change';
+        }
         cashInDrawer = cashInDrawer.reverse();
+        var zipped = _.zip(denominations, cashInDrawer);
 
-        var result = denominations.reduce(function(acc, curr, index) {
+        var result = zipped.reduce(function(acc, currPair) {
+            var curr = currPair[0];
+            var curr2 = currPair[1];
             if(change >= curr.value){
                 var currentValue = 0.00;
 
-                while(change >= curr.value && cashInDrawer[index][1] >=
+                while(change >= curr.value && curr2[1] >=
 
                     curr.value){
 
                         currentValue += curr.value;
                         change -= curr.value;
                         change = Math.round(change * 100) / 100;
-                        cashInDrawer[index][1] -= curr.value;
+                        curr2[1] -= curr.value;
                     }
 
-                    acc.push([cashInDrawer[index][0], currentValue]);
+                    acc.push([curr2[0], currentValue]);
 
                     return acc;
                 } else {
@@ -63,8 +67,7 @@ function checkCashRegister(price, cash, cashInDrawer){
             } else {
                 return 'Insufficient Funds';
             }
-
-            function noChange(price, cash, cashInDrawer){
-                return change == 0 && drawer > 0;
-            }
+}
+function noChange(drawer, change){
+    return change == 0 && drawer > 0;
 }
