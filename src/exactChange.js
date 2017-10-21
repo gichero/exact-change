@@ -1,5 +1,4 @@
 
-
 var denominations = [
     {name: 'ONE HUNDRED', value: 100.00},
     {name: 'TWENTY',      value: 20.00},
@@ -14,7 +13,6 @@ var denominations = [
 
 function checkCashRegister(price, cash, cashInDrawer){
         var change = cash - price;
-
         var drawer = cashInDrawer.reduce(function(accumulator, currentValue){
             return accumulator + currentValue[1];
         }, 0.0);
