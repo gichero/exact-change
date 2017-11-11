@@ -36,22 +36,22 @@ function checkCashRegister(price, cash, cashInDrawer){
         var zipped = _.zip(denominations, cashInDrawer);
 
         var result = zipped.reduce(function(acc, currPair) {
-            var curr = currPair[0];
-            var curr2 = currPair[1];
-            if(change >= curr.value){
+            var currName = currPair[0];
+            var currValue = currPair[1];
+            if(change >= currName.value){
                 var currentValue = 0.00;
 
-                while(change >= curr.value && curr2[1] >=
+                while(change >= currName.value && currValue[1] >=
 
-                    curr.value){
+                    currName.value){
 
-                        currentValue += curr.value;
-                        change -= curr.value;
+                        currentValue += currName.value;
+                        change -= currName.value;
                         change = Math.round(change * 100) / 100;
-                        curr2[1] -= curr.value;
+                        currValue[1] -= currName.value;
                     }
 
-                    acc.push([curr2[0], currentValue]);
+                    acc.push([currValue[0], currentValue]);
 
                     return acc;
                 } else {
