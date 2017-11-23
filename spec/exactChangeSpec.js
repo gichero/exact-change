@@ -21,7 +21,7 @@ describe ('Result', function(){
     })
 
     it('should return no change when the price equals the cash', function(){
-        var result = checkCashRegister(5.00, 5.00, [['ONE HUNDRED', 200.00], ['TWENTY', 100.00], ['TEN', 40.00], ['FIVE', 25.00], ['ONE', 11.00], ['QUARTER', 12.50], ['DIME', 10.00], ['NICKEL', 5.00], ['PENNY', 2.00]]);
+        var result = checkCashRegister(5.00, 5.00, [['QUARTER', 2.50], ['ONE', 11.00], ['FIVE', 25.00], ['TEN', 40.00], ['TWENTY', 100.00]]);
         expect(result).toEqual('No Change');
     })
 
@@ -29,8 +29,8 @@ describe ('Result', function(){
 
         var result = "Invalid Entry";
 
-        expect(checkCashRegister(-30.00, 40.00, [['PENNY', 2.00], ['NICKEL', 4.00], ['DIME', 2.00], ['QUARTER', 2.25], ['ONE', 17.00], ['FIVE', 30.00], ['TEN', 60.00], ['TWENTY', 40.00], ['ONE HUNDRED', 200.00]])).toEqual(result);
-        expect(checkCashRegister(30.00, -40.00, [['PENNY', 2.00], ['NICKEL', 4.00], ['DIME', 2.00], ['QUARTER', 2.25], ['ONE', 17.00], ['FIVE', 30.00], ['TEN', 60.00], ['TWENTY', 40.00], ['ONE HUNDRED', 200.00]])).toEqual(result);
-        expect(checkCashRegister(-30.00, -40.00, [['PENNY', 2.00], ['NICKEL', 4.00], ['DIME', 2.00], ['QUARTER', 2.25], ['ONE', 17.00], ['FIVE', 30.00], ['TEN', 60.00], ['TWENTY', 40.00], ['ONE HUNDRED', 200.00]])).toEqual(result);
+        expect(checkCashRegister(-30.00, 40.00, [['QUARTER', 2.25], ['ONE', 7.00], ['FIVE', 40.00]])).toEqual(result);
+        expect(checkCashRegister(30.00, -40.00, [['QUARTER', 2.25], ['ONE', 7.00], ['FIVE', 40.00]])).toEqual(result);
+        expect(checkCashRegister(-30.00, -40.00, [['QUARTER', 2.25], ['ONE', 7.00], ['FIVE', 40.00]])).toEqual(result);
   })
 })
