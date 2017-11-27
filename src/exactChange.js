@@ -78,7 +78,7 @@ function checkCashRegister(price, cash, cashInDrawer){
 
 // checkCashRegister(19.50, 20.00, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.10], ["QUARTER", 4.25], ["ONE", 90.00], ["FIVE", 55.00], ["TEN", 20.00], ["TWENTY", 60.00], ["ONE HUNDRED", 100.00]]);
 
-//using lodash (submitted solution)
+//using lodash (submitted solution sept-2017)
 var denominations = [
     {name: 'ONE HUNDRED', value: 100.00},
     {name: 'TWENTY',      value: 20.00},
@@ -149,15 +149,8 @@ function checkCashRegister(price, cash, cashInDrawer){
 function noChange(drawer, change){
     return change == 0 && drawer > 0;
 }
-//Changes to make from greater sum
-// The variables curr and curr2 are a little confusing. What would be better names to convey their intent.
-//  On lines 44 and 63, it is a little difficult to read the while and if conditions. While making sure that the computer can follow directions is the most important thing, when making changes to the code, it's important to have clear, expressive code that speaks in the language of the problem domain.  What could you change to make the conditionals more expressive?  One technique is to use the Decompose Conditional refactoring (https://www.youtube.com/watch?v=pPQ6QMbt5fE).  Check it out and see if there is a way to apply that for lines 44 and 63.
-//  A part of coding on a team is making sure that your code is well formatted.  What changes would help the code to be more readable? For example, it is difficult to tell where the while loop on line 44 and the if statement on line 41 end.
-// We want our code to be as "flat" as possible.  One way to move towards this is the refactoring described at https://sourcemaking.com/refactoring/replace-nested-conditional-with-guard-clauses
-//
-// What would be a better way to match the denominations with cashInDrawer without using the zip method. For example, the algorithm should be flexible enough to where a user may leave out a denomination in the input.
 
-//submitted code
+//refactored code (submitted 11-26-17)
 var denominations = [
     {name: 'ONE HUNDRED', value: 100.00},
     {name: 'TWENTY',      value: 20.00},
